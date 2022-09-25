@@ -27,7 +27,7 @@ def main():
 
 
 def print_stars(score):
-    if score =="empty":
+    if score == "empty":
         print("No score, Please press S")
     else:
         for i in range(score):
