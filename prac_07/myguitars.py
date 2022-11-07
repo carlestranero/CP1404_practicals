@@ -1,8 +1,10 @@
 from prac_06.guitar import Guitar
 
 def main():
-    """Read file of programming language details, save as objects, display."""
+
     guitars = []
+    guitar_input(guitars)
+
     # Open the file for reading
     in_file = open('guitars.csv', 'r')
     # File format is like: Name,Year,Cost
@@ -16,11 +18,26 @@ def main():
     # Close the file as soon as we've finished reading it
     in_file.close()
 
-
     guitars.sort()
-    for guitar in guitars:
+    save_to_file(guitars)
 
-        print(guitar)
+
+def guitar_input(guitars):
+    guitar_name = input("Name: ")
+    while guitar_name != "":
+        guitar_year = int(input("Year: "))
+        guitar_cost = float(input("Cost: $"))
+        new_guitar = Guitar(guitar_name, guitar_year, guitar_cost)
+        guitars.append(new_guitar)
+        print(f"{new_guitar} added.")
+        guitar_name = input("Name: ")
+
+
+def save_to_file(guitars):
+    out_file = open("guitars.csv", 'w')
+    for guitar in guitars:
+        print(f"{guitar.name},{guitar.year},{guitar.cost}", file=out_file)
+    out_file.close()
 
 
 main()
